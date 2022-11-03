@@ -1,7 +1,14 @@
-html,
+html{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
 body {
   padding: 0;
   margin: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   --colorDemo: #4caf50;

@@ -1,8 +1,9 @@
 export type QuizContextType = {
   player: Player | null;
   round: Round | null;
-  saveAnswer: (answer: AnswerRequest) => Promise<Round> | Promise<void>;
+  saveAnswer: (answer: AnswerRequest) => Promise<Answer> | Promise<void>;
   startQuiz: (playData: Player) => Promise<Round> | Romise<void>;
+  resetQuiz: () => Romise<void>;
 };
 
 export type Player = {
@@ -44,7 +45,7 @@ export type Round = {
   id: number;
   player_id: number;
   questions: Array<Quest>;
-  answers: Array<Answer>
+  answers: Array<Answer>;
 };
 
 export type RoundsResult = {

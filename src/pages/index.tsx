@@ -4,9 +4,10 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import PlayerIdentify from '../components/player'
 import Game from '../components/game'
+import FooterCopa from 'src/components/footer'
 import { QuizContext } from '../contexts/quizContext'
 import { QuizContextType } from '../@types/quiz'
-
+import {Main} from 'src/styles/pages/styles'
 const Home: React.FC = () => {
   const {player} = React.useContext(QuizContext) as QuizContextType;
 
@@ -17,9 +18,10 @@ const Home: React.FC = () => {
         <meta name="description" content="A quiz game, development by 3S Digital" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        {player !== null ? <Game /> : <PlayerIdentify /> }      
-      </main>
+      <Main>
+        {player !== null ? <Game /> : <PlayerIdentify /> }     
+        <FooterCopa></FooterCopa> 
+      </Main>
     </div>
   );
 }

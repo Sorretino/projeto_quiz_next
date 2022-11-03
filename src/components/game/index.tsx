@@ -1,14 +1,20 @@
 import React, {useEffect,useState,useContext} from 'react';
-import {ContainerQuiz,ContainerDemo,Align_large,Btn_Demo,Align_Page,Align_Title} from '../../styles/pages/styles';
+import {ContainerQuiz,ContainerDemo,Align_large,Btn_Demo,Align_Page,Align_Title} from 'src/styles/pages/styles';
 import { Category, QuizContextType, Player, RoundsResult, Round, Quest, QuestOption, AnswerRequest, Answer } from '../../@types/quiz'
 import { QuizContext } from '../../contexts/quizContext'
+import api from 'src/services/api';
+import Result from '../result';
 
 const Game : React.FC = () => {
   const { round, saveAnswer } = React.useContext(QuizContext) as QuizContextType;
   const [quests, setQuests] = useState<Quest[]>([]);
-  const [questionId, setQuestionId] = useState<number>(0);
-  const [optionId, setOptionId] = useState<number>(0);
-  console.log(quests, " quest");
+  const [actual, setActual] = useState<number>(1);
+  const [limit, setLimit] = useState<number>(0);
+  const [answers, setAnswers] = useState<number>(0);
+  const [closed, setClosed] = useState<boolean>(false);
+  const [resultRound, setResultRound] = useState <RoundsResult|null>(null)
+/*   const [select, ] */
+
   useEffect(() => {
    getQuests();
   }, [])
@@ -17,66 +23,93 @@ const Game : React.FC = () => {
   {
     if (round?.questions) {
       setQuests(round.questions);
+      setLimit(round.questions.length);
+      const storageQuest = localStorage.getItem('gqtq3s');
+      if (typeof storageQuest === "string") {
+        setActual(parseInt(storageQuest));
+      }
+      const storageClose = localStorage.getItem('gqtf3s');
+      if (typeof storageClose === "string") {
+        if (storageClose === 'true') {finalize();} 
+      }
+      let correct: number = 0;
+      if (round?.answers !== undefined) {
+        round?.answers.map((itm: Answer) => {
+          if (itm.correct) { correct = correct + 1 }
+        });
+      }
+      setAnswers(correct);
     }
   }
 
-  const handleAnswer = async () => {
-    if (questionId !== 0 || optionId !== 0) {
-    let answer: AnswerRequest = {
-      question_id: questionId,
-      option_id:  optionId,
+  const processAnswer = async (opt: QuestOption) => {
+    try {
+      let answer: AnswerRequest = {
+        question_id: quests[actual-1].id,
+        option_id:  opt.id,
+      }
+      const result = await saveAnswer(answer);
+      if (result !== null) {
+        if (result?.correct === true) {
+          setAnswers(answers + 1);
+        }
+        next();
+      }
+    } catch (error) {
+      console.error
     }
-    saveAnswer(answer);
   }
+
+  const next = () => {
+    if (actual < limit) {
+      let newActual = actual + 1;
+      setActual(newActual);
+      localStorage.setItem('gqtq3s',''+newActual);
+    } else {
+      finalize();
+    }
+  };
+
+  const finalize = async () => {
+    try {
+      setClosed(true);
+      localStorage.setItem('gqtf3s', 'true');
+      const {data:{round:roundData}} = await api.get(`rounds/${round?.id}/result`);
+      setResultRound(roundData);
+      console.log(roundData, ' . game');
+    } catch (error: any) {
+      console.error(error.error);
+    }
   }
 
   return (
     <ContainerQuiz>
      <Align_large><label>Quiz App</label> </Align_large>
-      
-      <ContainerDemo>
-        <Align_Page>
-       <span>1/3</span>
-       <span>Certas: 2</span>
-        </Align_Page>
-      <Align_large>
-      {/* <Align_Title> {quests[0].description}l</Align_Title> */}
-      </Align_large>
-            <Align_large>
-            {quests[0]? quests.map((obj) => {
-                                  return (
-                                    <>
-                                     <Align_Title> {obj.description}l</Align_Title>
-                                    </>
-                                  );
-                                })
-                              : null}
-              { quests !== undefined && quests.length > 0&&
-                // {quests.length >0 &&
-                //   quests.map((quest:Quest)=>{
-                //    return(
-                //      <Align_Title> {quest[0].description}l</Align_Title>
-                //    )
-                //   })
-                //    }
-              quests[0].options.map((obj) =>{
-                return(
-                  <>
-              
-                  <Align_large key={obj.id}>
-                <Btn_Demo >{obj.label}</Btn_Demo>
+      {quests.length === 0 ? (<h3>Carregando Perguntas</h3>) : (
+       <React.Fragment>
+          {closed === true ? (<Result resultRound={resultRound}/>) : (
+            <ContainerDemo>
+              <Align_Page>
+                <span>{actual}/{limit}</span>
+                <span>Certas: {answers}</span>
+              </Align_Page>
+              <Align_large>
+                <Align_Title> {quests[actual - 1].description}</Align_Title>
+                {quests[actual - 1].options.map((opt: QuestOption) => {
+                  return (
+                    <Align_large key={`${quests[actual - 1].id}-opt-${opt.id}`}>
+                      <Btn_Demo onClick={() => processAnswer(opt)}>{opt.label}</Btn_Demo>
+                    </Align_large>
+                  )
+                })}
               </Align_large>
-                  </>
-                 
-                );
-              
-              })}
-              </Align_large>
-      
-  
-      </ContainerDemo>
+            </ContainerDemo>
+        )}
+       </React.Fragment> 
+      )}
     </ContainerQuiz>
   );
 }
 
 export default Game;
+
