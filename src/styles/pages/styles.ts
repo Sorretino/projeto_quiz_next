@@ -18,7 +18,7 @@ export const Main = styled.div`
   flex-direction:column ;
   flex-wrap: wrap;
   margin-top: 0;
-  background-image:url('https://nlw.rocketseat.com.br/background-ignite.png') ;
+  background-image:url('https://png.pngtree.com/thumb_back/fh260/background/20210917/pngtree-background-elegant-black-with-gold-line-side-4-image_901638.jpg') ;
   background-size:cover ;
   background-repeat:no-repeat ;
   background-position:center ;
@@ -112,10 +112,10 @@ export const Align_large = styled.div`
  padding:10px ;
 
  label{
-  font-size:18px ;
-  color:#ccc ;
-  width:100px ;
-  font-family:sans-serif; 
+  font-size: 22px;
+    color: #ccc;
+    font-weight: 900;
+    font-family: sans-serif;
  }
 
   @media (max-width: 1050px) {
@@ -171,15 +171,15 @@ export const Ipt_Player = styled.input`
         box-shadow: 0px 0px 2px purple;
     } */
     
-  @media (max-width: 1050px) {
+  @media (max-width: 940) {
     width: 100%;
-    max-width:360px ;
+    max-width:100% ;
     flex-wrap: wrap;
     margin: 0;
   }
   @media (max-width: 940px) {
     width: 100%;
-    max-width:320px;
+    max-width:100%;
     flex-wrap: wrap;
     margin: 0;
   }
@@ -225,26 +225,19 @@ export const Align_Btn = styled.div`
 `;
 
 export const Btn_Start = styled.button`
-  /* width: 100%;
-  max-width: 320px; */
-  /* height: 40px; */
-   /*border-style:none ;
-  //background-color: var(--colorDemo);
-  background-color:transparent ;
-  border:solid 1px red ;
-  border-radius:15px ; */
+width:100% ;
+max-width:320px ;
   border: 1px solid #f7dd43;
   display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 12px 68px;
+    padding: 12px 0;
     font-size: 0.875rem;
     font-weight: 700;
-    line-height: 1.0256rem;
+    line-height: 25px;
     text-transform: uppercase;
     background-color: transparent;
-    /* border: 1px solid transparent; */
     border-radius: 4px;
     margin-left:20px ;
     transition: all 0.2s ease-in-out 0s;
@@ -254,7 +247,8 @@ export const Btn_Start = styled.button`
   }
   @media (max-width: 940px) {
     width: 100%;
-    max-width: 160px;
+    max-width: 100%;
+    margin:0 ;
   }
 `;
 
@@ -274,23 +268,11 @@ export const Btn_Demo = styled.button`
   }
   @media (max-width: 940px) {
     width: 100%;
-  max-width: 160px;
+  max-width: 100%;
   }
 `;
 
 export const SelectGame = styled.select`
-  /* width: 100%;
-  max-width:400px ;
-  height: 40px;
-  background: #ffffff;
-  color:#333 ;
-  padding-left: 5px;
-  font-size: 14px;
-  border: none;
-  margin-left: 10px;
-  appearance: none;
-    border-radius: 8px;
-    border: 0.5px solid rgb(223, 223, 223); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -323,6 +305,52 @@ export const SelectGame = styled.select`
     padding: 0px 2px 1px;
     
   }
+  @media (max-width: 940px) {
+    width: 100%;
+  max-width: 100%;
+  margin:0 ;
+  option {
+    width: 100%;
+  max-width: 100%;
+    box-shadow: 0px 0px 1px #ccc;
+    color:#333 ;
+    background-color: transparent;
+    border: 1px solid #f7dd43;
+    display: flex;
+    white-space: pre;
+    min-height: 20px;
+    padding: 0px 2px 1px;
+    
+  }
+  }
+`;
+
+export const CustonSelects = styled.div`
+  position: relative;
+  display: block;
+  max-width: 320px;
+    width: 100%;
+    line-height: 51px;
+  /* margin: 0 auto; */
+  border: 0px solid #e4002b;
+  background-color: transparent;
+  z-index: 10;
+  :after {
+    border-right: 2px solid;
+    border-top: 2px solid;
+    color: #676767;
+    content: "";
+    display: inline-block;
+    height: 10px;
+    position: absolute;
+    right: 1em;
+    top: 35%;
+    transform: rotate(135deg);
+    width: 10px;
+  }
+  @media (max-width: 950px) {
+    max-width: 100%;
+  }
 `;
 
 export const ContainerFooter = styled.div`
@@ -330,20 +358,16 @@ export const ContainerFooter = styled.div`
   max-width: 100%;
   height: auto;
   max-height:150px ;
-  /* background-color:#047c3f; */
   display: flex;
   justify-content:center ;
   align-items:center ;
   flex-direction:row ;
-  
    position:relative;
   bottom:0 ;
   @media (max-width: 940px) {
     width: 100%;
     max-width: 100%;
-  
     margin: 0;
-    
   }
 `;
 export const Title_Footer = styled.div`
@@ -355,7 +379,6 @@ export const Title_Footer = styled.div`
   text-align:end ;
  
   label{
-   
     font-size: 18px;
     font-weight: 600;
     font-family: sans-serif;
@@ -377,9 +400,7 @@ background-size:cover ;
 z-index:1 ;
 bottom: 10px;
 margin-left:20px ;
-
 `;
-
 
 export const ResultFinal = styled.div`
   width: 100%;
@@ -392,7 +413,6 @@ export const ResultFinal = styled.div`
   flex-direction:row ;
   flex-wrap: wrap;
     padding:20px ;
-
   @media (max-width: 1050px) {
     width: 100%;
     max-width: 100%;
@@ -411,11 +431,10 @@ export const Final_Loading = styled.div`
     justify-content:center ;
     align-items:center ;
   @media (max-width: 1050px) {
-    /* width: 100%;
-    max-width: 100%;
-    flex-direction:row ;
-    margin: 0;
-    padding:10px ; */
+    width: 150px;
+  height:150px ;
+  border-radius:50% ;
+
   }
 `;
 export const Final_Title = styled.span`

@@ -1,5 +1,15 @@
 import React, {useEffect, useState, useContext} from 'react'
-import {ContainerQuiz,ContainerDemo,Ipt_Player,Align_Btn,Btn_Start,SelectGame,AlignCenter,Align_large} from '../../styles/pages/styles'
+import {ContainerQuiz,
+  ContainerDemo,
+  Ipt_Player,
+  Align_Btn,
+  Btn_Start,
+  SelectGame,
+  AlignCenter,
+  Align_large,
+  CustonSelects,
+  DroSeletsF,
+  SelectsOptionsF} from '../../styles/pages/styles'
 import api from '../../services/api'
 import { Category, QuizContextType, Player } from '../../@types/quiz'
 import { QuizContext } from '../../contexts/quizContext'
@@ -61,6 +71,7 @@ const PlayerIdentify : React.FC = () => {
 
       <Align_large>
         <label htmlFor='categories'>Categoria:</label>
+        <CustonSelects>
           <SelectGame id="categories"
             onChange={e => {
               let values = JSON.parse(e.target.value);
@@ -78,6 +89,7 @@ const PlayerIdentify : React.FC = () => {
               )
             })}
         </SelectGame>
+        </CustonSelects>
       </Align_large>
       <Align_Btn>
         {playerName !="" &&
