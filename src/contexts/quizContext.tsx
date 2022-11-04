@@ -53,8 +53,8 @@ const QuizProvider: FC<WithChildren> = ({children}) => {
       return null;
     }
   }
-
-  const saveAnswer:Promise<Answer|void> = async (answer: AnswerRequest) => {
+  const saveAnswer = async (answer: AnswerRequest) => {
+  //const saveAnswer:Promise<Answer|void> = async (answer: AnswerRequest) => {
     try {
       const { data: { answer:answerData}} = await api.post(`rounds/${round?.id}/answers`, {
         answer: {
