@@ -34,15 +34,12 @@ export const ContainerQuiz = styled.div`
   max-width: 100%;
   height: auto;
   min-height:60vh ;
-  /* background-color: #f6f6f6; */
-  /* background-color:#333 ; */
   display: flex;
   justify-content:center ;
   align-items:center ;
   flex-direction:column ;
   flex-wrap: wrap;
   margin-top: 0;
- // background-image:url('https://nlw.rocketseat.com.br/background-ignite.png') ;
   background-size:cover ;
   background-repeat:no-repeat ;
   background-position:center ;
@@ -76,7 +73,6 @@ export const AlignCenter = styled.div`
   width: 100%;
   max-width: 100%;
   height: auto;
-  /* background-color: #fff; */
   display: flex;
   justify-content:center ;
   align-items:center ;
@@ -103,11 +99,10 @@ export const Align_large = styled.div`
   width: 100%;
   max-width: 600px;
   height: auto;
-  /* background-color: #fff; */
   display: flex;
   justify-content:flex-start ;
   align-items:center ;
-  flex-direction:row ;
+  flex-direction:column ;
   flex-wrap: wrap;
  padding:10px ;
 
@@ -116,6 +111,7 @@ export const Align_large = styled.div`
     color: #ccc;
     font-weight: 900;
     font-family: sans-serif;
+    padding-bottom:10px ;
  }
 
   @media (max-width: 1050px) {
@@ -152,25 +148,18 @@ export const Align_Page = styled.div`
   }
 `;
 export const Ipt_Player = styled.input`
- width:100% ;
- max-width:320px ;
-  /* height:40px ; */
+  width:100% ;
+  max-width:320px ;
   line-height: 51px;
-  
   border-style:none ;
   padding-left:15px ;
-  margin-left:20px ;
   appearance: none;
-    border-radius: 8px;
-    background-color: transparent;
+  border-radius: 8px;
+  background-color: transparent;
   border: 1px solid #f7dd43;
   color:var(--colorDefalt) ;
   outline: none;
-  /* &:focus {
-        outline: none;
-        box-shadow: 0px 0px 2px purple;
-    } */
-    
+
   @media (max-width: 940) {
     width: 100%;
     max-width:100% ;
@@ -208,7 +197,6 @@ export const Align_Btn = styled.div`
   width: 100%;
   max-width: 100%;
   height: auto;
-  /* background-color: red; */
   display: flex;
   justify-content:center ;
   align-items:center ;
@@ -225,10 +213,10 @@ export const Align_Btn = styled.div`
 `;
 
 export const Btn_Start = styled.button`
-width:100% ;
-max-width:320px ;
-  border: 1px solid #f7dd43;
-  display: flex;
+    width:100% ;
+    max-width:320px ;
+    border: 1px solid #f7dd43;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -239,7 +227,6 @@ max-width:320px ;
     text-transform: uppercase;
     background-color: transparent;
     border-radius: 4px;
-    margin-left:20px ;
     transition: all 0.2s ease-in-out 0s;
   :hover{
     background-color: #047c3f;
@@ -258,13 +245,10 @@ export const Btn_Demo = styled.button`
   height: 40px;
   background-color: transparent;
   border: 1px solid #f7dd43;
-  //background-color: var(--btnDefault);
- // border-style:none ;
   border-radius:5px ;
   :hover{
     background-color: #047c3f;
     border:1px solid #047c3f;
-    //background-color: var(--HoverDemo);
   }
   @media (max-width: 940px) {
     width: 100%;
@@ -288,11 +272,9 @@ export const SelectGame = styled.select`
     font-style: normal;
     font-weight: 400;
     line-height: 51px;
-    /* margin: 10px 0px; */
     padding-left:15px ;
-    margin-left: 20px;
     background-color: transparent;
-  border: 1px solid #f7dd43;
+    border: 1px solid #f7dd43;
 
   option {
     box-shadow: 0px 0px 1px #ccc;
@@ -326,15 +308,14 @@ export const SelectGame = styled.select`
 `;
 
 export const CustonSelects = styled.div`
-  position: relative;
-  display: block;
-  max-width: 320px;
+    position: relative;
+    display: block;
+    max-width: 320px;
     width: 100%;
     line-height: 51px;
-  /* margin: 0 auto; */
-  border: 0px solid #e4002b;
-  background-color: transparent;
-  z-index: 10;
+    border: 0px solid #e4002b;
+    background-color: transparent;
+    z-index: 10;
   :after {
     border-right: 2px solid;
     border-top: 2px solid;
@@ -388,31 +369,30 @@ export const Title_Footer = styled.div`
     line-height: initial;
   }
   @media (max-width: 940px) {
-width: 100%;
+  width: 100%;
   max-width: 300px;
   }
 `;
 export const BgImgFooter = styled.img`
-position:relative ;
-width:150px ;
-height:150px ;
-background-size:cover ;
-z-index:1 ;
-bottom: 10px;
-margin-left:20px ;
+    position:relative ;
+    width:150px ;
+    height:150px ;
+    background-size:cover ;
+    z-index:1 ;
+    bottom: 10px;
+    margin-left:20px ;
 `;
 
 export const ResultFinal = styled.div`
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-
-  display: flex;
-  justify-content:center ;
-  align-items:center ;
-  flex-direction:row ;
-  flex-wrap: wrap;
-    padding:20px ;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content:center ;
+    align-items:center ;
+    flex-direction:row ;
+    flex-wrap: wrap;
+      padding:20px ;
   @media (max-width: 1050px) {
     width: 100%;
     max-width: 100%;
@@ -422,11 +402,11 @@ export const ResultFinal = styled.div`
   }
 `;
 export const Final_Loading = styled.div`
-  width: 150px;
-  height:150px ;
-  border-radius:50% ;
-  background-color:transparent;
-  border:solid 12px #f7dd43;
+    width: 150px;
+    height:150px ;
+    border-radius:50% ;
+    background-color:transparent;
+    border:solid 12px #f7dd43;
     display:flex ;
     justify-content:center ;
     align-items:center ;
@@ -450,7 +430,6 @@ export const ResultStart = styled.div`
   width: 100%;
   max-width: 100%;
   height: auto;
-  
   display: flex;
   justify-content:center ;
   align-items:center ;
