@@ -5,6 +5,11 @@ import { QuizContext } from '../../contexts/quizContext'
 import api from 'src/services/api';
 import Result from '../result';
 
+type ISelect = {
+  opt_id : number;
+  status: boolean|undefined;
+};
+
 const Game : React.FC = () => {
   const { round, saveAnswer } = React.useContext(QuizContext) as QuizContextType;
   const [quests, setQuests] = useState<Quest[]>([]);
@@ -13,7 +18,7 @@ const Game : React.FC = () => {
   const [answers, setAnswers] = useState<number>(0);
   const [closed, setClosed] = useState<boolean>(false);
   const [resultRound, setResultRound] = useState <RoundsResult|null>(null)
-/*   const [select, ] */
+  const [select, setSelect] = useState <ISelect|null>(null);
 
   useEffect(() => {
    getQuests();
@@ -50,17 +55,24 @@ const Game : React.FC = () => {
       }
       const result = await saveAnswer(answer);
       if (result !== null) {
+         setSelect({
+            opt_id: opt.id,
+            status: result?.correct
+          })
         if (result?.correct === true) {
           setAnswers(answers + 1);
         }
+        await sleep(1000);
         next();
       }
     } catch (error) {
       console.error
     }
   }
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
   const next = () => {
+    
     if (actual < limit) {
       let newActual = actual + 1;
       setActual(newActual);
@@ -82,13 +94,16 @@ const Game : React.FC = () => {
     }
   }
 
+
+
   return (
     <ContainerQuiz>
-     <Align_large><label>Quiz App</label> </Align_large>
+    
       {quests.length === 0 ? (<h3>Carregando Perguntas</h3>) : (
        <React.Fragment>
           {closed === true ? (<Result resultRound={resultRound}/>) : (
             <ContainerDemo>
+               <Align_large><label>Quiz App</label> </Align_large>
               <Align_Page>
                 <span>{actual}/{limit}</span>
                 <span>Certas: {answers}</span>
@@ -98,7 +113,11 @@ const Game : React.FC = () => {
                 {quests[actual - 1].options.map((opt: QuestOption) => {
                   return (
                     <Align_large key={`${quests[actual - 1].id}-opt-${opt.id}`}>
-                      <Btn_Demo onClick={() => processAnswer(opt)}>{opt.label}</Btn_Demo>
+                      <Btn_Demo style={{
+                        backgroundColor: select?.opt_id === opt.id ? (
+                          select.status === true ? 'green' : 'red'
+                        ) : 'transparent'
+                      }} onClick={() => processAnswer(opt)}>{opt.label}</Btn_Demo>
                     </Align_large>
                   )
                 })}

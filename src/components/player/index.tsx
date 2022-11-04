@@ -1,4 +1,5 @@
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useEffect, 
+  useState, useContext} from 'react'
 import {ContainerQuiz,
   ContainerDemo,
   Ipt_Player,
@@ -8,8 +9,7 @@ import {ContainerQuiz,
   AlignCenter,
   Align_large,
   CustonSelects,
-  DroSeletsF,
-  SelectsOptionsF} from '../../styles/pages/styles'
+  } from '../../styles/pages/styles'
 import api from '../../services/api'
 import { Category, QuizContextType, Player } from '../../@types/quiz'
 import { QuizContext } from '../../contexts/quizContext'
@@ -94,7 +94,7 @@ const PlayerIdentify : React.FC = () => {
       <Align_Btn>
         {playerName !="" &&
         playerName !=null &&
-        playerName.length > 6 &&
+        playerName.length > 3 &&
         categoryId  != 0 &&
         categoryId != null ? 
         (

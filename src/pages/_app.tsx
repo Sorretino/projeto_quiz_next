@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+
 import * as React from 'react'
 import QuizProvider from '../contexts/quizContext'
 import type { AppProps } from 'next/app'
