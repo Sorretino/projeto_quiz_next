@@ -4,7 +4,9 @@ import { QuizContextType, Player, AnswerRequest, Round, Answer } from '../@types
 
 export const QuizContext = React.createContext<QuizContextType | null>(null);
 
-const QuizProvider: FC = ({children}:ComponentElement) => {
+type WithChildren<T = {}> = T & { children?: React.ReactNode };
+
+const QuizProvider: FC<WithChildren> = ({children}) => {
   const [player, setPlayer] = useState<Player | null>(null);
   const [round, setRound] = useState<Round | null>(null);
 

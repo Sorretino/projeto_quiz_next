@@ -2,8 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react'
 import {ContainerQuiz,ContainerDemo,ResultFinal,ResultStart,Final_Loading,Final_Title,Align_Btn,AlignCenter, Btn_Start} from '../../styles/pages/styles'
 import { QuizContextType,RoundsResult } from '../../@types/quiz'
 import { QuizContext } from '../../contexts/quizContext'
-import Loader from "react-loader-spinner";
-
 import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
